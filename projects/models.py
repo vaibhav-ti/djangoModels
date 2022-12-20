@@ -13,13 +13,5 @@ class Project(models.Model):
 class ProjectAccess(models.Model):
     user = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
     project = models.ForeignKey("projects.Project", on_delete=models.CASCADE)
-    created_by = models.ForeignKey("accounts.User", on_delete=models.CASCADE, related_name="project_creator")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-
-
-
-
-

@@ -2,6 +2,18 @@ from django.db import models
 
 # Create your models here.
 
+class TemplateTag(models.Model):
+    title = models.CharField(max_length=128)
+    description = models.CharField(max_length=128)
+
+
+class ServiceTemplate(models.Model):
+    name = models.CharField(max_length=128)
+    base_repo = models.CharField(max_length=256)
+    author = models.ForeignKey("accounts.User", on_delete=models.SET_NULL, null=True)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class TemplateVersion(models.Model):
     template = models.ForeignKey("templates.ServiceTemplate", on_delete=models.SET_NULL, null=True)
@@ -15,17 +27,4 @@ class TemplateVersion(models.Model):
     # tags =
     description = models.CharField(max_length=128)
 
-
-class ServiceTemplate(models.Model):
-    name = models.CharField(max_length=128)
-    base_repo = models.CharField(max_length=256)
-    author_id = models.ForeignKey("accounts.User", on_delete=models.SET_NULL, null=True)
-    description = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-
-class TemplateTag(models.Model):
-    title = models.CharField(max_length=128)
-    description = models.CharField(max_length=128)
 
