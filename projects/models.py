@@ -15,3 +15,14 @@ class ProjectAccess(models.Model):
     project = models.ForeignKey("projects.Project", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class ProjectEnvironment(models.Model):
+    project = models.ForeignKey("projects.Project", on_delete=models.CASCADE)
+    name = models.CharField(max_length=128)
+    created_by = models.ForeignKey("accounts.User", on_delete=models.RESTRICT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('project', 'name')

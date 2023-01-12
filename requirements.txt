@@ -48,3 +48,4 @@ mysqlclient
 mysql-connector
 
 django-structlog
+django-cors-headers

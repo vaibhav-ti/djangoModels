@@ -16,9 +16,9 @@ class Service(models.Model):
 
 
 class Environment(models.Model):
-    name = models.CharField(max_length=128)
-    branch_name = models.CharField(max_length=128)
+    project_env = models.ForeignKey("projects.ProjectEnvironment", on_delete=models.CASCADE)
     service = models.ForeignKey('services.Service', on_delete=models.CASCADE)
+    branch_name = models.CharField(max_length=128)
     output = models.JSONField(null=True)
     created_by = models.ForeignKey('accounts.User', on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add=True)
